@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace 对应接口的全路径  -->
+<mapper namespace="com.etc.mapper.CommunityMapper" >
+
+	<!-- 
+		新增居民信息
+	 -->
+	 <insert id="addCommunity" parameterType="Community">
+	 	insert into resident (residentId,residentName,residentAddress,residentTelephone) values (#{residentID},#{residentName},#{residentAddress},#{residentTelephone})
+	 </insert>
+	 
+	 <!-- 
+	 	删除居民信息 
+	 -->
+	  <delete id="deleteCommunityById" parameterType="Integer">
+	  	delete from resident where residentId=#{id}
+	  </delete>
+	  
+	  <!-- 
+	  	修改居民信息
+	  -->
+	  <update id="updateCommunityById" parameterType="Community">
+	  	update resident set residentName=#{residentName},residentAddress=#{residentAddress},residentTelephone=#{residentTelephone} where residentId=#{residentID}
+	  </update>
+	  
+	  <!-- 
+	  	查询全部居民信息 
+	  	resultType  如果返回类型是  集合 那么 resultType 只写 集合的泛型
+	  -->
+	  <select id="queryAllCommunities" resultType="Community">
+	  	select * from resident
+	  </select>
+	  
+	  <!-- 
+	  	通过居民ID查询居民信息 
+	  -->
+	  <select id="queryCommunityByID" resultType="Community" parameterType="Integer">
+	  	select * from resident where residentId=#{id}
+	  </select>
+	  
+	  <!-- 
+	  	通过居民姓名查询居民信息 
+	  -->
+	  <select id="queryCommunityByName" resultType="Community" parameterType="String">
+	  	select * from resident where residentName=#{name}
+	  </select>
+	  
+	  <!-- 
+	  	通过居民电话号码查询居民信息 
+	  -->
+	  <select id="queryCommunityByTelephone" resultType="Community" parameterType="long">
+	  	select * from resident where residentTelephone=#{telephone}
+	  </select>
+
+
+</mapper>

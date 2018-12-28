@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace 对应接口的全路径  -->
+<mapper namespace="com.etc.mapper.SourceMapper" >
+
+	<!-- 
+		新增资源
+	 -->
+	 <insert id="addSource" parameterType="Source">
+	 	insert into source (sourceId,sourceName,fitNum,openTime) values (#{sourceId},#{sourceName},#{fitNum},#{openTime})
+	 </insert>
+	 
+	 <!-- 
+	 	删除资源
+	 -->
+	  <delete id="deleteSourceById" parameterType="Integer">
+	  	delete from source where sourceId=#{id}
+	  </delete>
+	  
+	  <!-- 
+	  	修改资源
+	  -->
+	  <update id="updateSourceById" parameterType="Source">
+	  	update source set sourceName=#{sourceName},fitNum=#{fitNum},openTime=#{openTime} where sourceId=#{sourceId}
+	  </update>
+	  
+	  <!-- 
+	  	查询全部资源信息 
+	  	resultType  如果返回类型是  集合 那么 resultType 只写 集合的泛型
+	  -->
+	  <select id="queryAllSources" resultType="Source">
+	  	select * from source
+	  </select>
+	  
+	  <!-- 
+	  	通过资源ID查询资源信息 
+	  -->
+	  <select id="querySourceById" resultType="Source" parameterType="Integer">
+	  	select * from source where sourceId=#{id}
+	  </select>
+	  
+	  <!-- 
+	  	通过资源名查询资源信息 
+	  -->
+	  <select id="querySourceByName" resultType="Source" parameterType="String">
+	  	select * from source where sourceName=#{name}
+	  </select>
+	  
+
+
+</mapper>

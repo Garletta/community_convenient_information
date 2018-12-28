@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace 对应接口的全路径  -->
+<mapper namespace="com.etc.mapper.UserMapper" >
+
+   <!-- 根据用户查询用户
+   
+   id  对应接口的方法名
+   parameterType 输入参数的类型
+   resultType 返回参数类型
+   #{value} value 对象的属性  
+    -->
+   <select id="queryUserByNameAndPwd" parameterType="user" resultType="user">
+       SELECT * FROM USER WHERE username =#{userName} AND  password =#{password}
+   </select>
+   
+   <!-- 通过用户id查询用户 -->
+   <select id="queryUserById" parameterType="string"  resultType="user">
+       SELECT * FROM USER where userId = #{userId} 
+   </select>
+   
+</mapper>
